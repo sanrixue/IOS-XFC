@@ -12,6 +12,7 @@
 #import "PNLineChartData.h"
 #import "PNLineChartDataItem.h"
 #import <CoreText/CoreText.h>
+#import "YCHead.h"
 
 @interface PNLineChart ()
 
@@ -148,6 +149,7 @@
             PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(0.0, y, (NSInteger) _chartMarginLeft * 0.9, (NSInteger) _yLabelHeight)];
             [label setTextAlignment:NSTextAlignmentRight];
             label.text = labelText;
+            label.textColor = COLOR(32, 108, 116, 1);
             [self setCustomStyleForYLabel:label];
             [self addSubview:label];
             [_yChartLabels addObject:label];
@@ -203,6 +205,7 @@
             PNChartLabel *label = [[PNChartLabel alloc] initWithFrame:CGRectMake(x, y, (NSInteger) _xLabelWidth, (NSInteger) _chartMarginBottom)];
             [label setTextAlignment:NSTextAlignmentCenter];
             label.text = labelText;
+            label.textColor = COLOR(32, 108, 116, 1);
             [self setCustomStyleForXLabel:label];
             [self addSubview:label];
             [_xChartLabels addObject:label];
@@ -962,6 +965,7 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(x + legendLineWidth, y, labelsize.width, labelsize.height)];
         label.text = pdata.dataTitle;
         label.textColor = self.legendFontColor ? self.legendFontColor : [UIColor blackColor];
+        
         label.font = self.legendFont ? self.legendFont : [UIFont systemFontOfSize:12.0f];
         label.lineBreakMode = NSLineBreakByWordWrapping;
         label.numberOfLines = 0;

@@ -18,7 +18,7 @@
 #import "UIImageView+WebCache.h"
 #import "UIView+Extension.h"
 #import "CreatControls.h"
-#import "DBManager.h"
+
 
 
 #define NOTIFICATION_NAME  @"selectimage"     //选取图片发送通知使用

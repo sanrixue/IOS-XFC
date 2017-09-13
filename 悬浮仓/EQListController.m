@@ -29,13 +29,20 @@
     
     [self setTitle:@"悬浮仓"];
     
-
+    [self addIcon:@"background" frame:self.view.frame];
     
+    [self addBtn:@"1" Frame:CGRectMake(KSCREENWIDTH-60, 35, 40, 40) action:@selector(homeBtnClick)];
+    
+    [self addBtn:@"2" Frame:CGRectMake(KSCREENWIDTH-120, 35, 40, 40) action:@selector(unKnowBtnClick)];
+    
+    
+    [self addLabText:@"悬浮仓" Color:COLOR(28, 115, 125, 1) Frame:CGRectMake(20, 90, 150, 25) font:[UIFont systemFontOfSize:25] View:self.view];
+
     
     _array = [NSMutableArray array];
     
     
-    NSDictionary *dic = @{@"image":@"test.png"
+    NSDictionary *dic = @{@"image":@"7.png"
                           };
     for (int i = 0; i<1; i++) {
         [_array addObject:dic];
@@ -43,7 +50,7 @@
     
     
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KSCREENWIDTH, KSCREENHEIGHT) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 130, KSCREENWIDTH, KSCREENHEIGHT-130) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
@@ -98,11 +105,46 @@
     
     UserController *userVC = [[UserController alloc] init];
     userVC.pro_indent_id = self.pro_indent_id;
-    [self.navigationController pushViewController:userVC animated:YES];
+    NSLog(@"%@",self.pro_indent_id);
+    [self presentViewController:userVC animated:YES completion:nil];
+
 
 }
 
+- (void)addBtn:(NSString *)iconName Frame:(CGRect)frame action:(SEL)name {
+    UIButton *btn = [[UIButton alloc] initWithFrame:frame];
+    [btn setBackgroundImage:[UIImage imageNamed:iconName] forState:UIControlStateNormal];
+    btn.backgroundColor = [UIColor clearColor];
+    [btn addTarget:self action:name forControlEvents:UIControlEventTouchUpInside];
+    btn.layer.masksToBounds = YES;
+    btn.layer.cornerRadius = 5;
+    [self.view addSubview:btn];
+}
 
+- (void)addLabText:(NSString *)text Color:(UIColor *)color Frame:(CGRect) frame font:(UIFont *)font View:(UIView *)view {
+    UILabel *lab = [[UILabel alloc] initWithFrame:frame];
+    lab.text = text;
+    lab.textColor = color;
+    lab.textAlignment = NSTextAlignmentLeft;
+    lab.font = font;
+    lab.numberOfLines=0;
+    [view addSubview:lab];
+}
+
+- (void)addIcon:(NSString *)name frame:(CGRect)frame {
+    UIImageView *icon = [[UIImageView alloc] initWithFrame:frame];
+    icon.image = [UIImage imageNamed:name];
+    [self.view addSubview:icon];
+}
+
+- (void)homeBtnClick {
+    [self dismissViewControllerAnimated:YES completion: nil];
+}
+
+#warning 2222
+- (void)unKnowBtnClick {
+    NSLog(@"未知");
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

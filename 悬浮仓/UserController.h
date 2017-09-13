@@ -10,4 +10,6 @@
 
 @interface UserController : UIViewController
 
+@property (nonatomic, strong) NSString *pro_indent_id;
+
 @end
